@@ -3,8 +3,21 @@ ArrayList<Animal> listofanimals;
 Animal ottersprite;
 Animal bluewhalesprite;
 Animal playersprite;
-Animal h2;
-Enemy h3;
+Animal chinchillasprite;
+Animal dayfrogsprite;
+Animal dolphinsprite;
+Animal glidersprite;
+Animal hawksbillturtlesprite;
+Animal koalasprite;
+Animal lizardsprite;
+Animal macawsprite;
+Animal ocelotsprite;
+Animal ratsprite;
+Animal redwolfsprite;
+Animal treekangaroosprite;
+Animal turtle2sprite;
+Animal vaquitasprite;
+Animal woodpeckersprite;
 
 PImage otter;
 PImage bluewhale;
@@ -48,7 +61,7 @@ void setup()
   turtle2 = loadImage("turtle2.png");
   bluewhale = loadImage("bluewhale.png");
   
-  ottersprite = new Animal(otter, 0, 300, 5, 2, 2); 
+  ottersprite = new Animal(otter, 0, 300, 5, 0, 2); 
   bluewhalesprite = new Animal(bluewhale, 0, 400, 5, 3, 2);
   playersprite = ottersprite; //have to change it when hits new sprite etc., use t/f
   
