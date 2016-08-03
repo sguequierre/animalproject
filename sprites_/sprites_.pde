@@ -1,31 +1,38 @@
   
-// making two new "animals, which are lines for now...) 
-Animal h1 = new Animal(20, 2.0); 
-Animal h2 = new Animal(50, 2.5); 
- 
+
+Animal h1;
+Animal h2;
+Enemy h3;
+PImage img;
+
+
 void setup() 
 {
-  size(1000, 1000);
+  size(700, 700);
   frameRate(30);
+  img = loadImage("ocelothd.jpeg");
+  h1 = new Animal(450, 450, 2.0); 
+  h2 = new Animal(600.0, 3.6, 2.0); 
+  h3 = new Enemy(200, 1, 9);
 }
 
-void draw() { 
-  background(204);
-  h1.update(); 
-  h2.update();  
-} 
-
-class GameSprite {
-  
-}
-class Animal extends GameSprite{ 
-  float ypos, speed; 
-  Animal (float y, float s) {  
+class Animal { 
+  float xpos, ypos, speed; 
+  Animal (float x, float y, float s) {  
     ypos = y; 
-    speed = s; 
+    speed = s;
+    xpos = x;
   } 
+  void move_right() {
+   xpos = xpos+speed;
+  }
+  void draw() {
+    stroke(255, 0, 70);
+    line(xpos, ypos, xpos +100, ypos +100);
+  }
+}
   
-class Enemy extends GameSprite{
+class Enemy {
   float xpos, ypos, speed;
   Enemy (float x, float y, float s) {
     xpos = x;
@@ -33,11 +40,25 @@ class Enemy extends GameSprite{
     speed = s; }
 }
   
-void update() { 
+/*/void update() { 
     ypos += speed; 
     if (ypos > height) { 
       ypos = 0; 
     } 
     line(0, ypos, width, ypos); 
   } 
+
+
+void draw() { 
+  background(img);
+  h1.update(); 
+  h2.update();  
+  h3.update();
 } 
+/*/
+
+void draw() {
+  background(200);
+  h1.move_right();
+  h1.draw();
+}
