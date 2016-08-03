@@ -36,6 +36,7 @@ PImage treekangaroo;
 PImage turtle2;
 PImage vaquita;
 PImage woodpecker;
+boolean onground;
 
 float gravity = 0.5f;
 
@@ -43,7 +44,6 @@ void setup()
 {
   size(1000, 600);
   frameRate(30);
-
   otter = loadImage("giantotter.png");
   bluewhale = loadImage("bluewhale.png");
   chinchilla = loadImage("chinchilla.png");
@@ -61,7 +61,7 @@ void setup()
   turtle2 = loadImage("turtle2.png");
   bluewhale = loadImage("bluewhale.png");
   
-  ottersprite = new Animal(otter, 0, 300, 5, 0, 2); 
+  ottersprite = new Animal(otter, 0, 0, 5, 0, 2); 
   bluewhalesprite = new Animal(bluewhale, 0, 400, 5, 3, 2);
   playersprite = ottersprite; //have to change it when hits new sprite etc., use t/f
   
@@ -77,5 +77,7 @@ void draw() {
   for (Animal a:listofanimals) {
     a.draw();
     a.Update();
+    a.isonground();
   }
+
 }

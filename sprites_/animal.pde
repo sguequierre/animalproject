@@ -16,6 +16,7 @@ class Animal {
    xpos = xpos-=speed;
   }
   void OnJumpKeyPressed() {
+   if (onground == true)
    velocityY = -12.0f;   // Give a vertical boost to the players velocity to start jump
   println("Hello");
 }
@@ -24,13 +25,20 @@ class Animal {
         velocityY = -6.0f;      // Limit the speed of ascent
   }
 
-  
+  void isonground() {
+    if(ypos>300) {
+      onground = true;
+      print(ypos); }
+    else {
+      onground = false;
+      print("On ground false"); }
+  }
   void draw() {
     image(animalimage, xpos, ypos);
     //stroke(255, 0, 70);//
     //line(xpos, ypos, xpos +100, ypos +100);//
   }
-  
+       
   void Update(){
     xpos += velocityX;      // Apply horizontal velocity to X position
     ypos += velocityY;      // Apply vertical velocity to X position

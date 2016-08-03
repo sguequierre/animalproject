@@ -16,6 +16,7 @@ class Enemy {
    xpos = xpos-=speed;
   }
   void OnJumpKeyPressed() {
+   if (onground == true)
    velocityY = -12.0f;   // Give a vertical boost to the players velocity to start jump
   println("Hello");
 }
