@@ -4,14 +4,16 @@ Animal h1;
 Animal h2;
 Enemy h3;
 PImage img;
+PImage otter;
 
 
 void setup() 
 {
-  size(700, 700);
+  size(1000, 600);
   frameRate(30);
   img = loadImage("ocelothd.jpeg");
-  h1 = new Animal(450, 450, 2.0); 
+  otter = loadImage("giantotter.png");
+  ottersprite = new Animal(0, 300, 2.0); 
   h2 = new Animal(600.0, 3.6, 2.0); 
   h3 = new Enemy(200, 1, 9);
 }
@@ -27,8 +29,9 @@ class Animal {
    xpos = xpos+speed;
   }
   void draw() {
-    stroke(255, 0, 70);
-    line(xpos, ypos, xpos +100, ypos +100);
+    image(otter, xpos, ypos);
+    //stroke(255, 0, 70);//
+    //line(xpos, ypos, xpos +100, ypos +100);//
   }
 }
   
@@ -59,6 +62,6 @@ void draw() {
 
 void draw() {
   background(200);
-  h1.move_right();
-  h1.draw();
+  ottersprite.move_right();
+  ottersprite.draw();
 }
