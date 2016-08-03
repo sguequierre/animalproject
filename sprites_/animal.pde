@@ -1,6 +1,8 @@
 class Animal { 
   float xpos, ypos, speed, velocityX, velocityY; 
-  Animal (float x, float y, float s, float vx, float vy) {  
+  PImage animalimage;
+  Animal (PImage animalimage, float x, float y, float s, float vx, float vy) {
+    this.animalimage = animalimage;
     ypos = y; 
     speed = s;
     xpos = x;
@@ -24,7 +26,7 @@ class Animal {
 
   
   void draw() {
-    image(otter, xpos, ypos);
+    image(animalimage, xpos, ypos);
     //stroke(255, 0, 70);//
     //line(xpos, ypos, xpos +100, ypos +100);//
   }

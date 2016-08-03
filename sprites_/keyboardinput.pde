@@ -1,10 +1,10 @@
 void keyPressed() { 
   if (keyCode == RIGHT) {
-     ottersprite.move_right(); }
+     playersprite.move_right(); }
   if (keyCode == LEFT) {
-    ottersprite.move_left(); }
+    playersprite.move_left(); }
   if (key == ' ') {
-    ottersprite.OnJumpKeyPressed(); }
+    playersprite.OnJumpKeyPressed(); }
   if (key != ' ') { 
-    ottersprite.OnJumpKeyReleased(); }
+    playersprite.OnJumpKeyReleased(); }
 }
