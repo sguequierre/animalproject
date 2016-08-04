@@ -16,7 +16,7 @@ class Enemy {
    xpos = xpos-=speed;
   }
   void OnJumpKeyPressed() {
-   if (onground == true)
+   if (spacebarpressed == true)
    velocityY = -12.0f;   // Give a vertical boost to the players velocity to start jump
   println("Hello");
 }
@@ -33,12 +33,12 @@ class Enemy {
   }
   
   void Update(){
-    xpos += velocityX;      // Apply horizontal velocity to X position
+    xpos -= velocityX;      // Apply horizontal velocity to X position
     ypos += velocityY;      // Apply vertical velocity to X position
     velocityY += gravity;        // Apply gravity to vertical velocity
     if(ypos >= height - otter.height || ypos > 600) {
       velocityY = 0; }
-    if(xpos > width - otter.width || xpos < 0) {
-      velocityX = -velocityX; }
+    /*/if(xpos > width - otter.width || xpos < 0) {
+      velocityX = -velocityX; }/*/
   }
 }

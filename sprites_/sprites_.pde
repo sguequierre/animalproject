@@ -19,6 +19,17 @@ Animal turtle2sprite;
 Animal vaquitasprite;
 Animal woodpeckersprite;
 
+ArrayList<Enemy> listofenemies;
+Enemy bagsprite;
+Enemy bulldozersprite;
+Enemy bottlesprite;
+Enemy cansprite;
+Enemy trashbagsprite;
+Enemy capssprite;
+Enemy gascansprite;
+Enemy flatcansprite;
+
+
 PImage otter;
 PImage bluewhale;
 PImage chinchilla;
@@ -36,7 +47,17 @@ PImage treekangaroo;
 PImage turtle2;
 PImage vaquita;
 PImage woodpecker;
-boolean onground;
+
+PImage bag;
+PImage bulldozer;
+PImage bottle;
+PImage can;
+PImage trashbag;
+PImage caps;
+PImage gascan;
+PImage flatcan;
+
+boolean spacebarpressed;
 
 float gravity = 0.5f;
 
@@ -60,24 +81,37 @@ void setup()
   treekangaroo = loadImage("treekangaroo.png");
   turtle2 = loadImage("turtle2.png");
   bluewhale = loadImage("bluewhale.png");
+  bag = loadImage("bag.png");
+  bulldozer = loadImage("bulldozer.png");
+  bottle = loadImage("bottle.png");
+  can = loadImage("can.png");
+  trashbag = loadImage("trashbag.png");
+  caps = loadImage("caps.png");
+  gascan = loadImage("gascan.png");
+  flatcan = loadImage("flatcan.png");
   
-  ottersprite = new Animal(otter, 0, 0, 5, 0, 2); 
-  bluewhalesprite = new Animal(bluewhale, 0, 400, 5, 3, 2);
+  ottersprite = new Animal(otter, 0, 0, 10, 0, 2); 
+  cansprite = new Enemy(can, 1000, 400, 5, 3, 2);
   playersprite = ottersprite; //have to change it when hits new sprite etc., use t/f
   
   listofanimals = new ArrayList<Animal>();
+  listofenemies = new ArrayList<Enemy>();
   
   listofanimals.add(ottersprite);
-  listofanimals.add(bluewhalesprite);
+  listofenemies.add(cansprite);
   
 }
 
 void draw() {
-  background(200);
+  background(255);
   for (Animal a:listofanimals) {
     a.draw();
     a.Update();
-    a.isonground();
   }
+   for (Enemy a:listofenemies) {
+    a.draw();
+    a.Update();
+  }
+
 
 }
