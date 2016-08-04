@@ -28,11 +28,11 @@ class Animal {
         velocityY = -6.0f;  }    // Limit the speed of ascent
   } 
 
-  
+
   void draw() {
     textSize(32);
-    text("Animal time", 10, 30); 
-    fill(0, 102, 153);
+    text("it's animal time!", 10, 30); 
+    fill(0, 0, 0);
     image(animalimage, xpos, ypos);
     //stroke(255, 0, 70);//
     //line(xpos, ypos, xpos +100, ypos +100);//

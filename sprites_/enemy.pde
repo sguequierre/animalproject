@@ -28,17 +28,20 @@ class Enemy {
   
   void draw() {
     image(enemyimage, xpos, ypos);
-    //stroke(255, 0, 70);//
-    //line(xpos, ypos, xpos +100, ypos +100);//
   }
   
   void Update(){
     xpos -= velocityX;      // Apply horizontal velocity to X position
     ypos += velocityY;      // Apply vertical velocity to X position
     velocityY += gravity;        // Apply gravity to vertical velocity
-    if(ypos >= height - otter.height || ypos > 600) {
-      velocityY = 0; }
-    /*/if(xpos > width - otter.width || xpos < 0) {
-      velocityX = -velocityX; }/*/
+    
+    if(ypos >= height - this.enemyimage.height || ypos > 600) {
+      velocityY = 0;
+      ypos = height - this.enemyimage.height;
+      }
+      
+    if(xpos < playersprite.xpos + playersprite.animalimage.width && xpos > playersprite.xpos) {
+      this.enemyimage = empty;
+    }
   }
 }
