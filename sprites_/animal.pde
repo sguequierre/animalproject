@@ -9,6 +9,8 @@ class Animal {
     velocityX = vx;
     velocityY = vy;
   } 
+  
+    
   void move_right() {
    xpos = xpos+=speed;
   }
@@ -18,7 +20,7 @@ class Animal {
   void OnJumpKeyPressed() {
    {
   println("Jumping!");
-  velocityY = -12.0f;   // Give a vertical boost to the players velocity to start jump
+  velocityY = -14.0f;   // Give a vertical boost to the players velocity to start jump
   println("Done jumping");
   }
 }
@@ -36,14 +38,22 @@ class Animal {
     image(animalimage, xpos, ypos);
     //stroke(255, 0, 70);//
     //line(xpos, ypos, xpos +100, ypos +100);//
+  fill(100, 100, 0);
+  strokeWeight(4);
+  point(xpos, ypos);
+  point((xpos + this.animalimage.width), ypos);
+  point((xpos + this.animalimage.width), (ypos + this.animalimage.height));
+  point(xpos, (ypos + this.animalimage.height));
   }
        
   void Update(){
     xpos += velocityX;      // Apply horizontal velocity to X position
     ypos += velocityY;      // Apply vertical velocity to X position
     velocityY += gravity;        // Apply gravity to vertical velocity
-    if(ypos >= height - otter.height || ypos > 600) {
-      velocityY = 0; }
+    if(ypos >= height - this.animalimage.height || ypos > 600) {
+      velocityY = 0;
+      ypos = height - this.animalimage.height;
+    }
     if(xpos > width - otter.width || xpos < 0) {
       velocityX = -velocityX; }
   }
