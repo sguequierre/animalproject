@@ -20,7 +20,7 @@ class Animal {
   void OnJumpKeyPressed() {
    {
   println("Jumping!");
-  velocityY = -14.0f;   // Give a vertical boost to the players velocity to start jump
+  velocityY = -16.0f;   // Give a vertical boost to the players velocity to start jump
   println("Done jumping");
   }
 }
@@ -32,18 +32,18 @@ class Animal {
 
 
   void draw() {
-    textSize(32);
-    text("it's animal time!", 10, 30); 
-    fill(0, 0, 0);
+    textSize(40);
+    text("EXTINCTION RUN", 10, 30); 
+    fill(10, 10, 10);
     image(animalimage, xpos, ypos);
     //stroke(255, 0, 70);//
     //line(xpos, ypos, xpos +100, ypos +100);//
-  fill(100, 100, 0);
-  strokeWeight(4);
-  point(xpos, ypos);
-  point((xpos + this.animalimage.width), ypos);
-  point((xpos + this.animalimage.width), (ypos + this.animalimage.height));
-  point(xpos, (ypos + this.animalimage.height));
+  //fill(100, 100, 0);
+  //strokeWeight(4);
+  //point(xpos, ypos);
+  //point((xpos + this.animalimage.width), ypos);
+ // point((xpos + this.animalimage.width), (ypos + this.animalimage.height));
+  //point(xpos, (ypos + this.animalimage.height));
   }
        
   void Update(){

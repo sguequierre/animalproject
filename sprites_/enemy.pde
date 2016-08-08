@@ -43,38 +43,43 @@ class Enemy {
       ypos = height - this.enemyimage.height;
       }
       
-    fill(100, 100, 0);
-    strokeWeight(4);
-    point(xpos, ypos);
-    point((xpos + this.enemyimage.width), ypos);
-    point((xpos + this.enemyimage.width), (ypos + this.enemyimage.height));
-    point(xpos, (ypos + this.enemyimage.height));
+    //fill(100, 100, 0);
+    //strokeWeight(4);
+    //point(xpos, ypos);
+    //point((xpos + this.enemyimage.width), ypos);
+    //point((xpos + this.enemyimage.width), (ypos + this.enemyimage.height));
+    //point(xpos, (ypos + this.enemyimage.height));
     
     if((xpos < playersprite.xpos + playersprite.animalimage.width 
     && xpos > playersprite.xpos 
     && ypos < playersprite.ypos + playersprite.animalimage.height 
-    && ypos > playersprite.ypos)
+    //&& ypos > playersprite.ypos)
     ||
     ((xpos + this.enemyimage.width) < playersprite.xpos + playersprite.animalimage.width 
     && (xpos + this.enemyimage.width) > playersprite.xpos 
     && ypos < playersprite.ypos + playersprite.animalimage.height 
-    && ypos > playersprite.ypos)
+    //&& ypos > playersprite.ypos)
     ||
     ((xpos + this.enemyimage.width) < playersprite.xpos + playersprite.animalimage.width 
     && (xpos + this.enemyimage.width) > playersprite.xpos 
-    && (ypos + this.enemyimage.height) < playersprite.ypos + playersprite.animalimage.height 
-    && (ypos + this.enemyimage.height) > playersprite.ypos)
+    && (ypos - this.enemyimage.height) < playersprite.ypos + playersprite.animalimage.height 
+    //&& (ypos - this.enemyimage.height) > playersprite.ypos)
     ||
     (xpos < playersprite.xpos + playersprite.animalimage.width 
     && xpos > playersprite.xpos 
-    && (ypos + this.enemyimage.height) < playersprite.ypos + playersprite.animalimage.height 
-    && (ypos + this.enemyimage.height) > playersprite.ypos))
+    && (ypos - this.enemyimage.height) < playersprite.ypos + playersprite.animalimage.height)     ) ) ) )
+   // && (ypos - this.enemyimage.height) > playersprite.ypos))
     
     {
-      this.enemyimage = empty;
+      this.xpos = -1000;
       println("New collision");
       //print("Enemy,");
       //println(xpos + "," + ypos);
+      health = (health - 1);
+      if(health < 0) {
+          println("Dead");
+          gameover = true;   //NEED TO UNCOMMENT THIS PLEASE
+      } 
     }
   }
 }

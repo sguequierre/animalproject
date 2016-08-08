@@ -1,5 +1,4 @@
-  
-ArrayList<Animal> listofanimals;
+
 Animal ottersprite;
 Animal tempottersprite;
 Animal bluewhalesprite;
@@ -20,7 +19,6 @@ Animal turtle2sprite;
 Animal vaquitasprite;
 Animal woodpeckersprite;
 
-ArrayList<Enemy> listofenemies;
 Enemy bagsprite;
 Enemy bagsprite2;
 Enemy bagsprite3;
@@ -164,17 +162,29 @@ PImage dingo;
 PImage highway;
 PImage canholder;
 
-PImage empty;
+PImage amazon;
+PImage australia;
+PImage northamerica;
+PImage underwater;
 
 boolean spacebarpressed;
+boolean gameover;
 
 
 float gravity = 0.9f;
+
+int health;
+float MAX_HEALTH = 100;
+float rectWidth = 200;
+
 
 void setup() 
 {
   size(1000, 600);
   frameRate(30);
+  health = 50;
+  gameover = false;
+  
   otter = loadImage("giantotter.png");
   bluewhale = loadImage("bluewhale.png");
   chinchilla = loadImage("chinchilla.png");
@@ -192,6 +202,7 @@ void setup()
   turtle2 = loadImage("turtle2.png");
   woodpecker = loadImage("woodpecker.png");
   bluewhale = loadImage("bluewhale.png");
+  vaquita = loadImage("vaquita.png");
   
   bag = loadImage("bag.png");
   bulldozer = loadImage("bulldozer.png");
@@ -211,7 +222,10 @@ void setup()
   highway = loadImage("highway.png");
   canholder = loadImage("rings.png");
   
-  empty = loadImage("transsquare.png");
+  amazon = loadImage("amazon.png");
+  australia = loadImage("australia.png");
+  northamerica = loadImage("northamerica.png");
+  underwater = loadImage("underwater.png");
   
   ottersprite = new Animal(otter, 0, (580 - this.height), 10, 0, 2); 
   tempottersprite = new Animal(otter, 0, (580 - this.height), 10, 0, 2);
@@ -328,23 +342,52 @@ void setup()
   playersprite = new Animal(otter, 0, 0, 10, 0, 2);;
   
    //have to change it when hits new sprite etc., use t/f
-  
-  listofanimals = new ArrayList<Animal>();
-  listofenemies = new ArrayList<Enemy>();
-  
-  listofanimals.add(ottersprite);
-  listofenemies.add(cansprite);
+
+}
+
+void gameover() {
+  if (gameover == true) {
+    println("Game over");
+    background(10, 10, 100); 
+    textSize(40);
+    text("GAME OVER... YOUR ANIMAL IS EXTINCT", 0, 300); 
+    fill(204, 104, 2);
+  }
 }
 
 void draw() {
-  background(255);
-  int m = (millis() * 10); 
+  int m = (millis()); 
+  
+    if (health < 25)
+  {
+    fill(255, 0, 0);
+  } 
+  else if (health < 50)
+  {
+    fill(255, 200, 0);
+  }
+  else
+  {
+    fill(0, 255, 0);
+  }
+   
 
+
+
+
+  if((m > 0) && (m < 220000)) {
+    background(amazon); }
+    
+  if((m > 220000) && (m < 410000)) {
+    background(northamerica); }
+  
+  if((m > 410000) && (m < 650000)) {
+    background(underwater); }
 //this is a bunch of really long code for the course of the game.. could prob b shorter
 //starts off as otter
 //BEGINNING OF AMAZON RAINFOREST LEVEL
-
-  if(m > 0) {
+  
+  if((m > 0) && (m < 60000)) {
     cansprite.draw();
     cansprite.Update();
     playersprite = ottersprite;
@@ -377,7 +420,7 @@ void draw() {
   
  //switches to macaw
  
-   if(m > 60000) { 
+   if((m > 60000) && (m < 120000)) { 
     bulldozersprite3.draw();
     bulldozersprite3.Update();
     playersprite = macawsprite;
@@ -410,7 +453,7 @@ void draw() {
   
 //switches to ocelot
 
-  if(m > 120000) { 
+  if((m > 120000) && (m < 170000)) { 
     bulldozersprite6.draw();
     bulldozersprite6.Update();
     playersprite = ocelotsprite;
@@ -438,7 +481,7 @@ void draw() {
   
 //switches to chinchilla
 
-  if(m > 170000) { 
+  if((m > 170000) && (m < 220000)) { 
     bagsprite3.draw();
     bagsprite3.Update();
     playersprite = chinchillasprite;
@@ -470,7 +513,7 @@ void draw() {
 
 // starts with red wolf 
 
-if(m > 220000) { 
+if((m > 220000) && (m < 280000)) { 
     huntersprite.draw();
     huntersprite.Update();
     playersprite = redwolfsprite;
@@ -503,7 +546,7 @@ if(m > 220000) {
   
 //switches to woodpecker
 
-  if(m > 280000) { 
+  if((m > 280000) && (m < 320000)) { 
     bulldozersprite10.draw();
     bulldozersprite10.Update();
     playersprite = woodpeckersprite;
@@ -526,7 +569,7 @@ if(m > 220000) {
 
 //switches to kangaroo rat
 
-  if(m > 320000) { 
+  if((m > 320000) && (m < 370000)) { 
     bagsprite5.draw();
     bagsprite5.Update();
     playersprite = ratsprite;
@@ -554,7 +597,7 @@ if(m > 220000) {
 
 //switches to lizard
 
-  if(m > 370000) { 
+  if((m > 370000) && (m < 410000)) { 
     owlsprite.draw();
     owlsprite.Update();
     playersprite = lizardsprite;
@@ -581,136 +624,136 @@ if(m > 220000) {
 
 //starts with dolphin
 
-  if(m > 410000) { 
-    bagsprite3.draw();
-    bagsprite3.Update();
+  if((m > 410000) && (m < 470000)) { 
+    sodacanholdersprite2.draw();
+    sodacanholdersprite2.Update();
     playersprite = dolphinsprite;
   }
   
   if(m > 420000) { 
-    bulldozersprite8.draw();
-    bulldozersprite8.Update();
+    oilsprite.draw();
+    oilsprite.Update();
   }
   
   if(m > 430000) { 
-    trashbagsprite3.draw();
-    trashbagsprite3.Update();
+    fishnetsprite.draw();
+    fishnetsprite.Update();
   }
   
   if(m > 440000) { 
-    cansprite3.draw();
-    cansprite3.Update();
+    capssprite3.draw();
+    capssprite3.Update();
   }
   
   if(m > 450000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+    bagsprite6.draw();
+    bagsprite6.Update();
   }
   
   if(m > 460000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+    bottlesprite.draw();
+    bottlesprite.Update();
   }
 
 //switches to blue whale
 
-  if(m > 470000) { 
-    bagsprite3.draw();
-    bagsprite3.Update();
-    playersprite = dolphinsprite;
+  if((m > 470000) && (m < 530000)) { 
+    oilsprite2.draw();
+    oilsprite2.Update();
+    playersprite = bluewhalesprite;
   }
   
   if(m > 480000) { 
-    bulldozersprite8.draw();
-    bulldozersprite8.Update();
+    fishnetsprite2.draw();
+    fishnetsprite2.Update();
   }
   
   if(m > 490000) { 
-    trashbagsprite3.draw();
-    trashbagsprite3.Update();
+    capssprite4.draw();
+    capssprite4.Update();
   }
   
   if(m > 500000) { 
-    cansprite3.draw();
-    cansprite3.Update();
+    bagsprite7.draw();
+    bagsprite7.Update();
   }
   
   if(m > 510000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+   sodacanholdersprite3.draw();
+   sodacanholdersprite3.Update();
   }
   
   if(m > 520000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+    bottlesprite2.draw();
+    bottlesprite2.Update();
   }
 
 
 //switches to vaquita
 
-  if(m > 530000) { 
-    bagsprite3.draw();
-    bagsprite3.Update();
-    playersprite = dolphinsprite;
+  if((m > 530000) && (m < 590000)) { 
+    oilsprite3.draw();
+    oilsprite3.Update();
+    playersprite = vaquitasprite;
   }
   
   if(m > 540000) { 
-    bulldozersprite8.draw();
-    bulldozersprite8.Update();
+    fishnetsprite3.draw();
+    fishnetsprite3.Update();
   }
   
   if(m > 550000) { 
-    trashbagsprite3.draw();
-    trashbagsprite3.Update();
+    capssprite5.draw();
+    capssprite5.Update();
   }
   
   if(m > 560000) { 
-    cansprite3.draw();
-    cansprite3.Update();
+    bagsprite8.draw();
+    bagsprite8.Update();
   }
   
   if(m > 570000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+    bottlesprite3.draw();
+    bottlesprite3.Update();
   }
   
   if(m > 580000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+   sodacanholdersprite4.draw();
+   sodacanholdersprite4.Update();
   }
 
 
 //switches to turtle
 
-  if(m > 590000) { 
-    bagsprite3.draw();
-    bagsprite3.Update();
-    playersprite = dolphinsprite;
+  if((m > 590000) && (m < 650000)) { 
+    fishnetsprite4.draw();
+    fishnetsprite4.Update();
+    playersprite = hawksbillturtlesprite;
   }
   
   if(m > 600000) { 
-    bulldozersprite8.draw();
-    bulldozersprite8.Update();
+    oilsprite4.draw();
+    oilsprite4.Update();
   }
   
   if(m > 610000) { 
-    trashbagsprite3.draw();
-    trashbagsprite3.Update();
+    capssprite6.draw();
+    capssprite6.Update();
   }
   
   if(m > 620000) { 
-    cansprite3.draw();
-    cansprite3.Update();
+    bagsprite9.draw();
+    bagsprite9.Update();
   }
   
   if(m > 630000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+    bottlesprite4.draw();
+    bottlesprite4.Update();
   }
   
   if(m > 640000) { 
-    pitchforksprite3.draw();
-    pitchforksprite3.Update();
+   sodacanholdersprite5.draw();
+   sodacanholdersprite5.Update();
   }
 
 
@@ -720,16 +763,120 @@ if(m > 220000) {
 
 //starts with glider
 
+  if((m > 650000) && (m < 700000)) { 
+    cansprite5.draw();
+    cansprite5.Update();
+    playersprite = glidersprite;
+  }
+  
+  if(m > 660000) { 
+    windexsprite2.draw();
+    windexsprite2.Update();
+  }
+  
+  if(m > 670000) { 
+    dingosprite.draw();
+    dingosprite.Update();
+  }
+  
+  if(m > 680000) { 
+    bagsprite10.draw();
+    bagsprite10.Update();
+  }
+  
+  if(m > 690000) { 
+    dingosprite2.draw();
+    dingosprite2.Update();
+  }
+  
+
 //switches to koala
+
+  if((m > 700000) && (m < 750000)) { 
+    highwaysprite.draw();
+    highwaysprite.Update();
+    playersprite = koalasprite;
+  }
+  
+  if(m > 710000) { 
+    bagsprite11.draw();
+    bagsprite11.Update();
+  }
+  
+  if(m > 720000) { 
+    dingosprite3.draw();
+    dingosprite3.Update();
+  }
+  
+  if(m > 730000) { 
+    highwaysprite2.draw();
+    highwaysprite2.Update();
+  }
+  
+  if(m > 740000) { 
+    bulldozersprite13.draw();
+    bulldozersprite13.Update();
+  }
+  
 
 //switches to tree kangaroo
 
+  if((m > 750000) && (m < 790000)) { 
+    bulldozersprite14.draw();
+    bulldozersprite14.Update();
+    playersprite = treekangaroosprite;
+  }
+  
+  if(m > 760000) { 
+    trashbagsprite4.draw();
+    trashbagsprite4.Update();
+  }
+  
+  if(m > 770000) { 
+    huntersprite3.draw();
+    huntersprite3.Update();
+  }
+  
+  if(m > 780000) { 
+    bagsprite12.draw();
+    bagsprite12.Update();
+  }
+  
+
 //switches to day froggo
+
+  if((m > 790000) && (m < 840000)) { 
+    gascansprite2.draw();
+    gascansprite2.Update();
+    playersprite = dayfrogsprite;
+  }
+  
+  if(m > 800000) { 
+    bottlesprite5.draw();
+    bottlesprite5.Update();
+  }
+  
+  if(m > 810000) { 
+    capssprite7.draw();
+    capssprite7.Update();
+  }
+  
+  if(m > 820000) { 
+    bagsprite9.draw();
+    bagsprite9.Update();
+  }
+  
+  if(m > 830000) { 
+    highwaysprite3.draw();
+    highwaysprite3.Update();
+  }
+  
 
 //END OF AUSTRALIA LEVEL 
     
     playersprite.draw();
     playersprite.Update();
+    gameover();
   
 }
  

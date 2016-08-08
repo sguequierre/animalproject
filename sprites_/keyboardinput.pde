@@ -7,7 +7,7 @@ void keyPressed() {
     println(playersprite.ypos);
     print("Space key pressed"); }
     
-  if (key == ' ' && playersprite.ypos>450) {
+  if (key == ' ' && playersprite.ypos>400) {
     spacebarpressed = true;
     playersprite.OnJumpKeyPressed();
     println("Jump key pressed");
