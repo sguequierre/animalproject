@@ -12,29 +12,35 @@ class Animal {
   
     
   void move_right() {
-   xpos = xpos+=speed;
+   xpos = xpos+=(speed / 2);
   }
   void move_left() {
-   xpos = xpos-=speed;
+   xpos = xpos-=(speed / 2);
   }
   void OnJumpKeyPressed() {
    {
   println("Jumping!");
-  velocityY = -16.0f;   // Give a vertical boost to the players velocity to start jump
+  velocityY = -20f;
+  velocityX = 7.0f; // Give a vertical boost to the players velocity to start jump
   println("Done jumping");
   }
 }
   void OnJumpKeyReleased() { 
     println("Jumpkey released");
     if(velocityY < -6.0f)   {    // If character is still ascending in the jump
-        velocityY = -6.0f;  }    // Limit the speed of ascent
+        velocityY = -6.0f;  }    
+     velocityX = 0; // Limit the speed of ascent
   } 
 
 
   void draw() {
+    //fill(255, 255, 255);
+    //rect(0, 0, 300, 100);
+    fill(144, 238, 144);
+    //rect(30, 20, 55, 55);
+    //textFont(Helvetica);
     textSize(40);
-    text("EXTINCTION RUN", 10, 30); 
-    fill(10, 10, 10);
+    text("ExtinctionRun", 10, 30); 
     image(animalimage, xpos, ypos);
     //stroke(255, 0, 70);//
     //line(xpos, ypos, xpos +100, ypos +100);//
@@ -57,4 +63,9 @@ class Animal {
     if(xpos > width - otter.width || xpos < 0) {
       velocityX = -velocityX; }
   }
+  
+  /*/void collision(){
+    if (playersprite.animalimage == otter) {
+        playersprite.animalimage = ghostotter; }/*/
+  
 }

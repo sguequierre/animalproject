@@ -124,7 +124,16 @@ Enemy sodacanholdersprite3;
 Enemy sodacanholdersprite4;
 Enemy sodacanholdersprite5;
 
-
+Pawprint pawprint1;
+Pawprint pawprint2;
+Pawprint pawprint3;
+Pawprint pawprint4;
+Pawprint pawprint5;
+Pawprint pawprint6;
+Pawprint pawprint7;
+Pawprint pawprint8;
+Pawprint pawprint9;
+Pawprint pawprint10;
 
 PImage otter;
 PImage bluewhale;
@@ -167,23 +176,25 @@ PImage australia;
 PImage northamerica;
 PImage underwater;
 
+PImage pawprint;
+
 boolean spacebarpressed;
 boolean gameover;
 
 
 float gravity = 0.9f;
 
-int health;
-float MAX_HEALTH = 100;
-float rectWidth = 200;
+float health;
+
 
 
 void setup() 
 {
   size(1000, 600);
   frameRate(30);
-  health = 50;
+  health = 10;
   gameover = false;
+  spacebarpressed = false;
   
   otter = loadImage("giantotter.png");
   bluewhale = loadImage("bluewhale.png");
@@ -226,6 +237,8 @@ void setup()
   australia = loadImage("australia.png");
   northamerica = loadImage("northamerica.png");
   underwater = loadImage("underwater.png");
+  
+  pawprint = loadImage("pawprint.png");
   
   ottersprite = new Animal(otter, 0, (580 - this.height), 10, 0, 2); 
   tempottersprite = new Animal(otter, 0, (580 - this.height), 10, 0, 2);
@@ -336,7 +349,16 @@ void setup()
   sodacanholdersprite4 = new Enemy(canholder, 1000, (630 - this.height), 5, 3, 2);
   sodacanholdersprite5 = new Enemy(canholder, 1000, (630 - this.height), 5, 3, 2);
   
-  
+  pawprint1 = new Pawprint(pawprint, 0, 40);
+  pawprint2 = new Pawprint(pawprint, 50, 40);
+  pawprint3 = new Pawprint(pawprint, 100, 40);
+  pawprint4 = new Pawprint(pawprint, 150, 40);
+  pawprint5 = new Pawprint(pawprint, 200, 40);
+  pawprint6 = new Pawprint(pawprint, 250, 40);
+  pawprint7 = new Pawprint(pawprint, 300, 40);
+  pawprint8 = new Pawprint(pawprint, 350, 40);
+  pawprint9 = new Pawprint(pawprint, 400, 40);
+  pawprint10 = new Pawprint(pawprint, 450 , 40);
   
   // need to change this!! If the player is gonna change which it is!! 
   playersprite = new Animal(otter, 0, 0, 10, 0, 2);;
@@ -357,22 +379,9 @@ void gameover() {
 
 void draw() {
   int m = (millis()); 
+  fill(60, 82, 54);
+  rect(0, 0, 1000, -300);
   
-    if (health < 25)
-  {
-    fill(255, 0, 0);
-  } 
-  else if (health < 50)
-  {
-    fill(255, 200, 0);
-  }
-  else
-  {
-    fill(0, 255, 0);
-  }
-   
-
-
 
 
   if((m > 0) && (m < 220000)) {
@@ -383,14 +392,74 @@ void draw() {
   
   if((m > 410000) && (m < 650000)) {
     background(underwater); }
-//this is a bunch of really long code for the course of the game.. could prob b shorter
-//starts off as otter
-//BEGINNING OF AMAZON RAINFOREST LEVEL
+
+//This is the code for the pawprint health icons
   
+      if (health > 0)
+  {
+    pawprint1.draw();
+  } 
+    
+      if (health > 1)
+  {
+    pawprint2.draw();
+  } 
+  
+      if (health > 2)
+  {
+    pawprint3.draw();
+  }
+  
+      if (health > 3)
+  {
+    pawprint4.draw();
+  } 
+  
+      if (health > 4)
+  {
+    pawprint5.draw();
+  } 
+  
+      if (health > 5)
+  {
+    pawprint6.draw();
+  } 
+  
+      if (health > 6)
+  {
+    pawprint7.draw();
+  } 
+  
+      if (health > 7)
+  {
+    pawprint8.draw();
+  } 
+  
+      if (health > 8)
+  {
+    pawprint9.draw();
+  } 
+  
+      if (health > 9)
+  {
+    pawprint10.draw();
+  } 
+  
+  
+ //this is a bunch of really long code for the course of the game.. could prob b shorter
+//starts off as otter
+//BEGINNING OF AMAZON RAINFOREST LEVEL 
+
   if((m > 0) && (m < 60000)) {
     cansprite.draw();
     cansprite.Update();
     playersprite = ottersprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a amazon giant river otter!", 10, 150);
+    textSize(15);
+    fill(144, 238, 144);
+    text("One of the Amazon's top carnivores, you risk extinction due to habitat loss and fur hunting", 10, 180);
   }
   
   if(m > 10000) { 
@@ -424,6 +493,12 @@ void draw() {
     bulldozersprite3.draw();
     bulldozersprite3.Update();
     playersprite = macawsprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a hyacinth macaw!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("One of South America's most beautiful birds, you face extinction due to habitat loss and illegal pet trading", 10, 180);
   }
   
    if(m > 70000) { 
@@ -457,6 +532,12 @@ void draw() {
     bulldozersprite6.draw();
     bulldozersprite6.Update();
     playersprite = ocelotsprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a tree ocelot, aka margay!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("h", 10, 180);
   }
   
   if(m > 130000) { 
@@ -485,6 +566,12 @@ void draw() {
     bagsprite3.draw();
     bagsprite3.Update();
     playersprite = chinchillasprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a chinchilla!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
     if(m > 180000) { 
@@ -517,6 +604,12 @@ if((m > 220000) && (m < 280000)) {
     huntersprite.draw();
     huntersprite.Update();
     playersprite = redwolfsprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a red wolf!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
     if(m > 230000) { 
@@ -550,6 +643,12 @@ if((m > 220000) && (m < 280000)) {
     bulldozersprite10.draw();
     bulldozersprite10.Update();
     playersprite = woodpeckersprite;
+     textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a ivory-billed woodpecker!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 290000) { 
@@ -573,6 +672,12 @@ if((m > 220000) && (m < 280000)) {
     bagsprite5.draw();
     bagsprite5.Update();
     playersprite = ratsprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a kangaroo rat!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 330000) { 
@@ -601,6 +706,12 @@ if((m > 220000) && (m < 280000)) {
     owlsprite.draw();
     owlsprite.Update();
     playersprite = lizardsprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a lizard!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 380000) { 
@@ -628,6 +739,12 @@ if((m > 220000) && (m < 280000)) {
     sodacanholdersprite2.draw();
     sodacanholdersprite2.Update();
     playersprite = dolphinsprite;
+     textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a dolphin!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 420000) { 
@@ -661,6 +778,12 @@ if((m > 220000) && (m < 280000)) {
     oilsprite2.draw();
     oilsprite2.Update();
     playersprite = bluewhalesprite;
+     textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a blue whale!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 480000) { 
@@ -695,6 +818,12 @@ if((m > 220000) && (m < 280000)) {
     oilsprite3.draw();
     oilsprite3.Update();
     playersprite = vaquitasprite;
+     textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a vaquita!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 540000) { 
@@ -729,6 +858,12 @@ if((m > 220000) && (m < 280000)) {
     fishnetsprite4.draw();
     fishnetsprite4.Update();
     playersprite = hawksbillturtlesprite;
+     textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a hawksbill turtle!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 600000) { 
@@ -767,6 +902,12 @@ if((m > 220000) && (m < 280000)) {
     cansprite5.draw();
     cansprite5.Update();
     playersprite = glidersprite;
+     textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a glider!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 660000) { 
@@ -796,6 +937,12 @@ if((m > 220000) && (m < 280000)) {
     highwaysprite.draw();
     highwaysprite.Update();
     playersprite = koalasprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a koala!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 710000) { 
@@ -825,6 +972,12 @@ if((m > 220000) && (m < 280000)) {
     bulldozersprite14.draw();
     bulldozersprite14.Update();
     playersprite = treekangaroosprite;
+    textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a tree kangaroo!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 760000) { 
@@ -849,6 +1002,12 @@ if((m > 220000) && (m < 280000)) {
     gascansprite2.draw();
     gascansprite2.Update();
     playersprite = dayfrogsprite;
+     textSize(30);
+    fill(255, 255, 217);
+    text("You are now playing as a day frog!", 10, 180);
+    textSize(15);
+    fill(144, 238, 144);
+    text("H", 10, 180);
   }
   
   if(m > 800000) { 
@@ -862,8 +1021,8 @@ if((m > 220000) && (m < 280000)) {
   }
   
   if(m > 820000) { 
-    bagsprite9.draw();
-    bagsprite9.Update();
+    bagsprite13.draw();
+    bagsprite13.Update();
   }
   
   if(m > 830000) { 

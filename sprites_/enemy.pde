@@ -10,7 +10,7 @@ class Enemy {
     velocityY = vy;
   } 
   void move_right() {
-   xpos = xpos+=speed;
+   xpos = xpos+=(20 * speed);
   }
   void move_left() {
    xpos = xpos-=speed;
@@ -28,12 +28,19 @@ class Enemy {
   
   void draw() {
     image(enemyimage, xpos, ypos);
+  
   }
   
   void Update(){
-    xpos -= velocityX;      // Apply horizontal velocity to X position
+    float m =  (millis() + 100000);
+    println(m);
+    println("M");
+    println(m / 56789);
+    println("Speed");
+    xpos -= (velocityX * (m / 100000));      // Apply horizontal velocity to X position
     ypos += velocityY;      // Apply vertical velocity to X position
     velocityY += gravity;        // Apply gravity to vertical velocity
+ 
     
     print("Animal,");
     println(playersprite.xpos + "," + playersprite.ypos);
