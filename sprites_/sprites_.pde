@@ -1,4 +1,5 @@
-
+//import processing.sound.*;
+//SoundFile overworld;
 Animal ottersprite;
 Animal tempottersprite;
 Animal bluewhalesprite;
@@ -134,6 +135,11 @@ Pawprint pawprint7;
 Pawprint pawprint8;
 Pawprint pawprint9;
 Pawprint pawprint10;
+Pawprint logosprite;
+Pawprint noramerica;
+Pawprint southamerica;
+Pawprint aus;
+Pawprint ocean;
 
 PImage otter;
 PImage bluewhale;
@@ -177,9 +183,16 @@ PImage northamerica;
 PImage underwater;
 
 PImage pawprint;
+PImage logo;
+PImage sa;
+PImage na;
+PImage oc;
+PImage au;
+
 
 boolean spacebarpressed;
 boolean gameover;
+boolean wongame;
 
 
 float gravity = 0.9f;
@@ -194,6 +207,7 @@ void setup()
   frameRate(30);
   health = 10;
   gameover = false;
+  wongame = false;
   spacebarpressed = false;
   
   otter = loadImage("giantotter.png");
@@ -239,6 +253,13 @@ void setup()
   underwater = loadImage("underwater.png");
   
   pawprint = loadImage("pawprint.png");
+  logo = loadImage("logo.png");
+  na = loadImage("na.png");
+  sa = loadImage("southamerica.png");
+  au = loadImage("aus.png");
+  oc = loadImage("ocean.png");
+  
+  //overworld = new SoundFile(this, "overworld.mp3");
   
   ottersprite = new Animal(otter, 0, (580 - this.height), 10, 0, 2); 
   tempottersprite = new Animal(otter, 0, (580 - this.height), 10, 0, 2);
@@ -349,16 +370,21 @@ void setup()
   sodacanholdersprite4 = new Enemy(canholder, 1000, (630 - this.height), 5, 3, 2);
   sodacanholdersprite5 = new Enemy(canholder, 1000, (630 - this.height), 5, 3, 2);
   
-  pawprint1 = new Pawprint(pawprint, 0, 40);
-  pawprint2 = new Pawprint(pawprint, 50, 40);
-  pawprint3 = new Pawprint(pawprint, 100, 40);
-  pawprint4 = new Pawprint(pawprint, 150, 40);
-  pawprint5 = new Pawprint(pawprint, 200, 40);
-  pawprint6 = new Pawprint(pawprint, 250, 40);
-  pawprint7 = new Pawprint(pawprint, 300, 40);
-  pawprint8 = new Pawprint(pawprint, 350, 40);
-  pawprint9 = new Pawprint(pawprint, 400, 40);
-  pawprint10 = new Pawprint(pawprint, 450 , 40);
+  pawprint1 = new Pawprint(pawprint, 0, 50);
+  pawprint2 = new Pawprint(pawprint, 50, 50);
+  pawprint3 = new Pawprint(pawprint, 100, 50);
+  pawprint4 = new Pawprint(pawprint, 150, 50);
+  pawprint5 = new Pawprint(pawprint, 200, 50);
+  pawprint6 = new Pawprint(pawprint, 250, 50);
+  pawprint7 = new Pawprint(pawprint, 300, 50);
+  pawprint8 = new Pawprint(pawprint, 350, 50);
+  pawprint9 = new Pawprint(pawprint, 400, 50);
+  pawprint10 = new Pawprint(pawprint, 450 , 50);
+  logosprite = new Pawprint(logo, 10, 0);
+  noramerica = new Pawprint(na, 800, 0);
+  aus = new Pawprint(au, 800, 0);
+  southamerica = new Pawprint(sa, 800, 0);
+  ocean =  new Pawprint(oc, 800, 0);
   
   // need to change this!! If the player is gonna change which it is!! 
   playersprite = new Animal(otter, 0, 0, 10, 0, 2);;
@@ -372,27 +398,73 @@ void gameover() {
     println("Game over");
     background(10, 10, 100); 
     textSize(40);
-    text("GAME OVER... YOUR ANIMAL IS EXTINCT", 0, 300); 
+    text("GAME OVER... YOUR ANIMALS ARE EXTINCT", 0, 300); 
+    fill(204, 104, 2);
+  }
+}
+
+void gamewon() {
+  if ((wongame == true) && (health > 0)) {
+    println("Won");
+    background(10, 10, 100); 
+    textSize(40);
+    text("CONGRATULATIONS.", 200, 300); 
+    textSize(20);
+    text("YOU MADE IT ALL THE WAY THROUGH THE GAME. NO ANIMALS DIED! ... TODAY", 20, 400);
     fill(204, 104, 2);
   }
 }
 
 void draw() {
-  int m = (millis()); 
-  fill(60, 82, 54);
-  rect(0, 0, 1000, -300);
+  float m = (millis() * 2); 
+  //fill(60, 82, 54);
+  //rect(0, 0, 1000, -300);
   
 
 
   if((m > 0) && (m < 220000)) {
-    background(amazon); }
+    background(amazon);
+    fill(60, 82, 54);
+    rect(0, 0, 1000, -300);
+    southamerica.draw();
+    }
     
   if((m > 220000) && (m < 410000)) {
-    background(northamerica); }
+    background(northamerica);
+    fill(60, 82, 54);
+    rect(0, 0, 1000, -300);
+    noramerica.draw();
+    }
   
   if((m > 410000) && (m < 650000)) {
-    background(underwater); }
+    background(underwater); 
+    fill(60, 82, 54);
+    rect(0, 0, 1000, -300);
+    ocean.draw();
+    }
+    
+  if((m > 650000) && (m < 840000)) {
+    background(australia); 
+    fill(60, 82, 54);
+    rect(0, 0, 1000, -300);
+    aus.draw();}
+    
+  if((m > 840000) && (health > 0)) {
+    wongame = true;
+ }
+    
+fill(0); //color black
+//rect(30,30,50,50);  //solid black square
+fill(47,100,79,200);  //color red semi-transparent
+//stroke(128,0,255,128); //color purple semi-transparent
+rect(0,0,1000,200);  //red semi-transparent square with a purple semi-transparent border
 
+fill(0); //color black
+//rect(30,30,50,50);  //solid black square
+fill(0,10,0,255);  //color red semi-transparent
+//stroke(128,0,255,128); //color purple semi-transparent
+rect(0,570,1000,570);  //red semi-transparent square with a purple semi-transparent border
+logosprite.draw();
 //This is the code for the pawprint health icons
   
       if (health > 0)
@@ -495,7 +567,7 @@ void draw() {
     playersprite = macawsprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a hyacinth macaw!", 10, 180);
+    text("You are now playing as a hyacinth macaw!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
     text("One of South America's most beautiful birds, you face extinction due to habitat loss and illegal pet trading", 10, 180);
@@ -534,10 +606,11 @@ void draw() {
     playersprite = ocelotsprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a tree ocelot, aka margay!", 10, 180);
+    text("You are now playing as a tree ocelot, aka margay!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("h", 10, 180);
+    text("These little cats face extinction due to deforestation in their habitat. Since they are unable to cross open ground,", 10, 180);
+    text("they are ultimately trapped and die out due to inbreeding.", 10, 195);
   }
   
   if(m > 130000) { 
@@ -568,10 +641,10 @@ void draw() {
     playersprite = chinchillasprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a chinchilla!", 10, 180);
+    text("You are now playing as a chinchilla!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("The softest animals in the world, chinchillas are endangered due to illegal pelt hunting.", 10, 180);
   }
   
     if(m > 180000) { 
@@ -606,10 +679,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = redwolfsprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a red wolf!", 10, 180);
+    text("You are now playing as a red wolf!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("These creatures have been hunted relentlessly, and there are only 50 remaining in the wild.", 10, 180);
   }
   
     if(m > 230000) { 
@@ -645,10 +718,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = woodpeckersprite;
      textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a ivory-billed woodpecker!", 10, 180);
+    text("You are now playing as a ivory-billed woodpecker!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("Thought extinct, recently these large and beautiful woodpeckers were seen on a recording.", 10, 180);
   }
   
   if(m > 290000) { 
@@ -674,10 +747,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = ratsprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a kangaroo rat!", 10, 180);
+    text("You are now playing as a giant kangaroo rat!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("Native to california, this rodent's population is decreasing due to development in the area.", 10, 180);
   }
   
   if(m > 330000) { 
@@ -708,10 +781,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = lizardsprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a lizard!", 10, 180);
+    text("You are now playing as a Saint Croix ground lizard!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("This little guy has not been seen in a very long time, thanks to habitat loss and the Indian Mongoose.", 10, 180);
   }
   
   if(m > 380000) { 
@@ -741,10 +814,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = dolphinsprite;
      textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a dolphin!", 10, 180);
+    text("You are now playing as Hector's Dolphin!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("Thanks to bait hunting, chemical pollution, vessel traffic and disease, there are only 55 of these little dolphins remaining.", 10, 180);
   }
   
   if(m > 420000) { 
@@ -780,10 +853,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = bluewhalesprite;
      textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a blue whale!", 10, 180);
+    text("You are now playing as a blue whale!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("The largest animal in the world, the blue whale is hunted for its oil and blubber.", 10, 180);
   }
   
   if(m > 480000) { 
@@ -818,12 +891,12 @@ if((m > 220000) && (m < 280000)) {
     oilsprite3.draw();
     oilsprite3.Update();
     playersprite = vaquitasprite;
-     textSize(30);
+    textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a vaquita!", 10, 180);
+    text("You are now playing as a vaquita!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("Fishing, pollution, and habitat loss due to damming are all reasons there are fewer than 60 of these little porpoises left.", 10, 180);
   }
   
   if(m > 540000) { 
@@ -858,12 +931,12 @@ if((m > 220000) && (m < 280000)) {
     fishnetsprite4.draw();
     fishnetsprite4.Update();
     playersprite = hawksbillturtlesprite;
-     textSize(30);
+    textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a hawksbill turtle!", 10, 180);
+    text("You are now playing as a hawksbill turtle!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("These sea turtles are endangered due to poaching for their shells and loss of sandy beaches.", 10, 180);
   }
   
   if(m > 600000) { 
@@ -904,10 +977,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = glidersprite;
      textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a glider!", 10, 180);
+    text("You are now playing as a Mahogany glider!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("80% of this little animal's habitat has been cleared for growing sugar cane, pine trees, bananas or ranching.", 10, 180);
   }
   
   if(m > 660000) { 
@@ -939,10 +1012,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = koalasprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a koala!", 10, 180);
+    text("You are now playing as a koala!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("Koalas are threatened due to habitat destruction, domestic dog attacks, bushfires, and road accidents.", 10, 180);
   }
   
   if(m > 710000) { 
@@ -974,10 +1047,10 @@ if((m > 220000) && (m < 280000)) {
     playersprite = treekangaroosprite;
     textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a tree kangaroo!", 10, 180);
+    text("You are now playing as a tree kangaroo!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("There are only 50 tree kangaroos left, due to hunting, predation by domestic dogs, and habitat loss.", 10, 180);
   }
   
   if(m > 760000) { 
@@ -1002,12 +1075,12 @@ if((m > 220000) && (m < 280000)) {
     gascansprite2.draw();
     gascansprite2.Update();
     playersprite = dayfrogsprite;
-     textSize(30);
+    textSize(30);
     fill(255, 255, 217);
-    text("You are now playing as a day frog!", 10, 180);
+    text("You are now playing as a day frog!", 10, 150);
     textSize(15);
     fill(144, 238, 144);
-    text("H", 10, 180);
+    text("This frog disappeared quickly mysteriously, joining the growing list of (probably) extinct frogs in 1979.", 10, 180);
   }
   
   if(m > 800000) { 
@@ -1036,6 +1109,7 @@ if((m > 220000) && (m < 280000)) {
     playersprite.draw();
     playersprite.Update();
     gameover();
+    gamewon();
   
 }
  
